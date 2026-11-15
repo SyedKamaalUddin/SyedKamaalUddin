@@ -202,6 +202,7 @@ section{position:relative}
   </div>
 
   <style>
+    /* Normal state (cursor not on the box) */
     #about .about-card {
       max-width: 820px;
       padding: 28px 32px;
@@ -209,20 +210,39 @@ section{position:relative}
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.04);
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease,
+                  border-color 0.3s ease, background 0.3s ease;
     }
+
+    /* Hover state: same pop-up as the LinkedIn button */
+    #about .about-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.4),
+        0 10px 35px rgba(56, 189, 248, 0.25);
+    }
+
     #about .about-text {
       margin: 0 0 20px;
       padding-left: 18px;
       border-left: 3px solid rgba(255, 255, 255, 0.35);
-      color: #e6edf3;          /* same bright colour for every paragraph */
+      color: #e6edf3;
       font-size: 1rem;
       line-height: 1.75;
     }
     #about .about-text:last-child {
       margin-bottom: 0;
     }
+
     @media (max-width: 600px) {
       #about .about-card { padding: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #about .about-card { transition: none; }
+      #about .about-card:hover { transform: none; }
     }
   </style>
 </section>
